@@ -11,6 +11,8 @@ class HomeViewController: UIViewController {
 
     @IBOutlet var homeCollectionView: UICollectionView!
 
+//    let height: CGFloat = 80
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
@@ -37,7 +39,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let deviceWidth = UIScreen.main.bounds.width
 
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: deviceWidth, height: 80)
+        layout.itemSize = CGSize(width: deviceWidth, height: deviceWidth * 0.2)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
@@ -47,14 +49,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        6
+        return ChatList.list.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HomeCollectionViewCell.self), for: indexPath) as? HomeCollectionViewCell else { return .init() }
+        cell.configureCell(ChatList.list[indexPath.row])
+        DispatchQueue.main.async {
+            cell.homeImageView.layer.cornerRadius = cell.homeImageView.frame.width / 2
+        }
         return cell
     }
-    
-
 }
 

@@ -16,8 +16,8 @@ class HomeCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureCell()
         setupLabel()
+        setupImageView()
     }
 
     private func setupLabel() {
@@ -29,11 +29,14 @@ class HomeCollectionViewCell: UICollectionViewCell {
         dateLabel.font = .systemFont(ofSize: 10)
     }
 
-    func configureCell() {
-        homeImageView.image = UIImage(systemName: "star")
-        nameLabel.text = "임시"
-        lastChatLabel.text = "임시2"
-        dateLabel.text = "20.00.00"
+    private func setupImageView() {
+        homeImageView.clipsToBounds = true
     }
 
+    func configureCell(_ data: ChatRoom) {
+        homeImageView.image = UIImage(named: data.chatroomImage)
+        nameLabel.text = data.chatroomName
+        lastChatLabel.text = data.lastMessage
+        dateLabel.text = data.date
+    }
 }
