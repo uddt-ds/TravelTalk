@@ -11,9 +11,6 @@ class HomeViewController: UIViewController {
 
     @IBOutlet var homeCollectionView: UICollectionView!
 
-//    let height: CGFloat = 80
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
@@ -60,6 +57,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.homeImageView.layer.cornerRadius = cell.homeImageView.frame.width / 2
         }
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function, indexPath)
+        let sb = UIStoryboard(name: ChatViewController.identifier, bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: ChatViewController.identifier) as? ChatViewController else { return }
+        vc.selectedIndex = indexPath.row
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

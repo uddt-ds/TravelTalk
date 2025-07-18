@@ -18,7 +18,7 @@ struct ChatRoom {
         return chatList.last?.message ?? ""
     }
 
-    var date: String {
+    var shortDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY. MM. dd HH:mm"
         let convertData = dateFormatter.date(from: chatList.last?.date ?? "")
@@ -27,5 +27,14 @@ struct ChatRoom {
         dateFormatter.locale = Locale(identifier: "ko_KR")
         let convertStr = dateFormatter.string(from: convertData ?? Date())
         return convertStr
+    }
+
+    var clearRoomName: String {
+//        return chatroomName.last == "방" ? String(chatroomName.dropLast()) : chatroomName
+        if chatroomName.last == "방" {
+            return String(chatroomName.dropLast())
+        } else {
+            return chatroomName
+        }
     }
 }
