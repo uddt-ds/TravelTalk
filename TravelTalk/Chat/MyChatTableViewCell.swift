@@ -29,22 +29,20 @@ class MyChatTableViewCell: UITableViewCell {
     }
 
     private func setupLabel() {
-        let testArray = ["테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트", "테스트\n테스트\n테스트\n테스트"]
-
-        myMessageLabel.text = testArray[1]
-        myMessageLabel.textColor = .black
-        myMessageLabel.font = .boldSystemFont(ofSize: 12)
-        myMessageLabel.numberOfLines = 0
+        myMessageLabel.setupLabel(title: "", font: .boldSystemFont(ofSize: 12), txtColor: .black, lines: 0)
+        myMessageLabel.backgroundColor = .lightGray
         myMessageLabel.layer.borderWidth = 1
         myMessageLabel.layer.borderColor = UIColor.gray.cgColor
         myMessageLabel.layer.cornerRadius = 8
         myMessageLabel.clipsToBounds = true
-        myMessageLabel.backgroundColor = .lightGray
 
-        timeLabel.text = "88:88 오전"
-        timeLabel.textColor = .gray
-        timeLabel.font = .systemFont(ofSize: 8)
+        timeLabel.setupLabel(title: "", font: .systemFont(ofSize: 8), txtColor: .gray)
         timeLabel.textAlignment = .right
+    }
+
+    func configureCell(data: Chat) {
+        myMessageLabel.text = data.message
+        timeLabel.text = data.shortDate
     }
 
 }

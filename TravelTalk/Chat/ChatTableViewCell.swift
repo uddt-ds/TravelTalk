@@ -51,7 +51,7 @@ class ChatTableViewCell: UITableViewCell {
         chatImageView.image = UIImage(named: data.user.image)
         nameLabel.text = data.user.name
         messageLabel.text = data.message
-        timeLabel.text = data.date
+        timeLabel.text = data.shortDate
     }
 
 }
