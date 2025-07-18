@@ -12,18 +12,26 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet var chatImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var messageLabel: UILabel!
-    @IBOutlet var messageBgView: UIView!
     @IBOutlet var timeLabel: UILabel!
-    
+    @IBOutlet var messageStackView: UIStackView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setImageView()
         setupLabel()
+        setupStackView()
     }
 
     private func setImageView() {
         chatImageView.layer.cornerRadius = 20
         chatImageView.clipsToBounds = true
+    }
+
+    private func setupStackView() {
+        messageStackView.axis = .horizontal
+        messageStackView.distribution = .fillProportionally
+        messageStackView.spacing = 8
+        messageStackView.alignment = .bottom
     }
 
     private func setupLabel() {
@@ -33,14 +41,14 @@ class ChatTableViewCell: UITableViewCell {
 
         let testArray = ["테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트", "테스트\n테스트\n테스트\n테스트"]
 
-        messageLabel.text = testArray[0]
+        messageLabel.text = testArray[1]
         messageLabel.textColor = .black
         messageLabel.font = .boldSystemFont(ofSize: 12)
         messageLabel.numberOfLines = 0
-
-        messageBgView.layer.borderColor = UIColor.gray.cgColor
-        messageBgView.layer.cornerRadius = 8
-        messageBgView.layer.borderWidth = 1
+        messageLabel.layer.borderWidth = 1
+        messageLabel.layer.borderColor = UIColor.lightGray.cgColor
+        messageLabel.layer.cornerRadius = 8
+        messageLabel.clipsToBounds = true
 
         timeLabel.text = "88:88 오전"
         timeLabel.textColor = .gray

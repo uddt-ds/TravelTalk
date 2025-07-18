@@ -14,22 +14,22 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let xib = UINib(nibName: String(describing: ChatTableViewCell.self), bundle: nil)
-        chatTableView.register(xib, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
+        let xib = UINib(nibName: String(describing: MyChatTableViewCell.self), bundle: nil)
+        chatTableView.register(xib, forCellReuseIdentifier: String(describing: MyChatTableViewCell.self))
         chatTableView.delegate = self
         chatTableView.dataSource = self
-        chatTableView.rowHeight = 100
+        chatTableView.rowHeight = 160
     }
 }
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        10  
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as? ChatTableViewCell else { return .init() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MyChatTableViewCell.self), for: indexPath) as? MyChatTableViewCell else { return .init() }
         return cell
     }
 
