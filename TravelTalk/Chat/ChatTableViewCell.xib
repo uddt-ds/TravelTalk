@@ -33,16 +33,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="kes-1u-Nvj">
-                        <rect key="frame" x="56" y="36" width="262" height="20.333333333333329"/>
+                        <rect key="frame" x="55.999999999999993" y="36" width="98.333333333333314" height="20.333333333333329"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxZ-a3-BgH" customClass="BaseLabel" customModule="TravelTalk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="205" height="20.333333333333332"/>
+                                <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="20.333333333333332"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2n6-z6-1hl">
-                                <rect key="frame" x="212" y="0.3333333333333357" width="50" height="20"/>
+                                <rect key="frame" x="48.333333333333314" y="0.3333333333333357" width="50.000000000000014" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="RN2-Sd-utO"/>
                                     <constraint firstAttribute="width" constant="50" id="X0u-nV-LJ8"/>
@@ -61,7 +61,7 @@
                     <constraint firstItem="XeF-Zb-yhY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="HhB-hO-4PM"/>
                     <constraint firstItem="KT4-C0-CNk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Hnr-HO-dJ6"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kes-1u-Nvj" secondAttribute="bottom" constant="8" id="Mg9-Aa-71f"/>
-                    <constraint firstAttribute="trailing" secondItem="kes-1u-Nvj" secondAttribute="trailing" constant="32" id="asC-qi-NH2"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kes-1u-Nvj" secondAttribute="trailing" constant="32" id="asC-qi-NH2"/>
                     <constraint firstItem="KT4-C0-CNk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="gcR-a2-3nT"/>
                 </constraints>
             </tableViewCellContentView>

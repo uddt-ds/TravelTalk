@@ -11,10 +11,9 @@ class ChatViewController: UIViewController {
 
     static let identifier = "ChatViewController"
 
-    var selectedIndex: Int = 0
     var navTitle: String = ""
 
-    private var chatData: [Chat] = [.init(user: User(name: "김새싹", image: ""), date: "00:00", message: "")]
+    var chatData: [Chat] = [.init(user: User(name: "김새싹", image: ""), date: "00:00", message: "")]
 
     @IBOutlet var chatTableView: UITableView!
     @IBOutlet var chatTextView: UITextView!
@@ -29,8 +28,6 @@ class ChatViewController: UIViewController {
         setupKeyboardEvent()
         setupNavigation()
 
-        chatData = ChatList.list[selectedIndex].chatList
-
         let chatXib = UINib(nibName: String(describing: ChatTableViewCell.self), bundle: nil)
         chatTableView.register(chatXib, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
 
@@ -42,7 +39,6 @@ class ChatViewController: UIViewController {
         chatTableView.separatorStyle = .none
 
         chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0), at: .bottom, animated: true)
-        print(chatData.count)
 
         chatTextView.delegate = self
     }

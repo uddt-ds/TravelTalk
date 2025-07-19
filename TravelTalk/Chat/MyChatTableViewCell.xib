@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cnu-Cu-LqH">
-                        <rect key="frame" x="32" y="7.9999999999999982" width="360" height="20.333333333333329"/>
+                        <rect key="frame" x="292.66666666666669" y="7.9999999999999982" width="99.333333333333314" height="20.333333333333329"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gx4-oS-qOn">
                                 <rect key="frame" x="0.0" y="0.33333333333333393" width="50" height="20"/>
@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JV-AY-j3J" customClass="BaseLabel" customModule="TravelTalk" customModuleProvider="target">
-                                <rect key="frame" x="58" y="0.0" width="302" height="20.333333333333332"/>
+                                <rect key="frame" x="58" y="0.0" width="41.333333333333343" height="20.333333333333332"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -40,7 +40,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cnu-Cu-LqH" secondAttribute="bottom" constant="8" id="9yj-ou-1km"/>
-                    <constraint firstItem="cnu-Cu-LqH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="Zzv-5L-RaQ"/>
+                    <constraint firstItem="cnu-Cu-LqH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="Zzv-5L-RaQ"/>
                     <constraint firstAttribute="trailing" secondItem="cnu-Cu-LqH" secondAttribute="trailing" constant="8" id="qDX-1V-3IV"/>
                     <constraint firstItem="cnu-Cu-LqH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="rIw-lw-UAs"/>
                 </constraints>
