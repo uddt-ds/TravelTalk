@@ -12,6 +12,9 @@ class ChatViewController: UIViewController {
     static let identifier = "ChatViewController"
 
     var selectedIndex: Int = 0
+    var navTitle: String = ""
+
+    private var chatData: [Chat] = [.init(user: User(name: "김새싹", image: ""), date: "00:00", message: "")]
 
     @IBOutlet var chatTableView: UITableView!
     @IBOutlet var chatTextView: UITextView!
@@ -24,6 +27,9 @@ class ChatViewController: UIViewController {
         setupTextBar()
         setupSendButton()
         setupKeyboardEvent()
+        setupNavigation()
+
+        chatData = ChatList.list[selectedIndex].chatList
 
         let chatXib = UINib(nibName: String(describing: ChatTableViewCell.self), bundle: nil)
         chatTableView.register(chatXib, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
@@ -35,12 +41,20 @@ class ChatViewController: UIViewController {
         chatTableView.dataSource = self
         chatTableView.separatorStyle = .none
 
+        chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0), at: .bottom, animated: true)
+        print(chatData.count)
+
         chatTextView.delegate = self
     }
 
     private func setupTextView() {
         chatTextView.backgroundColor = .clear
         chatTextView.isScrollEnabled = false
+    }
+
+    private func setupNavigation() {
+        navigationItem.title = navTitle
+        navigationController?.navigationBar.tintColor = .black
     }
 
     private func setupTextBar() {
@@ -58,23 +72,34 @@ class ChatViewController: UIViewController {
         let image = UIImage(systemName: "paperplane")
         sendButton.setImage(image, for: .normal)
         sendButton.tintColor = .lightGray
+        sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
+    }
+
+    @objc private func sendButtonTapped(_ sender: UIButton) {
+        if chatTextView.text != "" {
+            chatData.append(Chat(user: User(name: "김새싹", image: ""), date: "00:00", message: chatTextView.text))
+            self.view.endEditing(true)
+            chatTextView.text = ""
+            chatTableView.reloadData()
+            chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0), at: .bottom, animated: true)
+        }
     }
 }
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        ChatList.list[selectedIndex].chatList.count
+        chatData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if ChatList.list[selectedIndex].chatList[indexPath.row].user.name != "김새싹" {
+        if chatData[indexPath.row].user.name != "김새싹" {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as? ChatTableViewCell else { return .init() }
-            cell.configureCell(data: ChatList.list[selectedIndex].chatList[indexPath.row])
+            cell.configureCell(data: chatData[indexPath.row])
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MyChatTableViewCell.self), for: indexPath) as? MyChatTableViewCell else { return .init() }
-            cell.configureCell(data: ChatList.list[selectedIndex].chatList[indexPath.row])
+            cell.configureCell(data: chatData[indexPath.row])
             return cell
         }
     }

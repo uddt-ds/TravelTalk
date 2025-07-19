@@ -29,7 +29,7 @@ class ChatTableViewCell: UITableViewCell {
 
     private func setupStackView() {
         messageStackView.axis = .horizontal
-        messageStackView.distribution = .fillProportionally
+        messageStackView.distribution = .fill
         messageStackView.spacing = 8
         messageStackView.alignment = .bottom
     }

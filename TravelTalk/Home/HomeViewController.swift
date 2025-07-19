@@ -77,7 +77,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         print(#function, indexPath)
         let sb = UIStoryboard(name: ChatViewController.identifier, bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: ChatViewController.identifier) as? ChatViewController else { return }
+        //TODO: 로직 수정 필요(데이터를 전달하는 방향으로 변경)
         vc.selectedIndex = indexPath.row
+        vc.navTitle = currentData[indexPath.row].clearRoomName
+        navigationItem.title = ""
         navigationController?.pushViewController(vc, animated: true)
     }
 }
