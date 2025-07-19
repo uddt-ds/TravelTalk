@@ -11,6 +11,15 @@ class HomeViewController: UIViewController {
 
     @IBOutlet var homeCollectionView: UICollectionView!
 
+    @IBOutlet var friendSearchBar: UISearchBar!
+
+    let totalData = ChatList.list
+
+    var currentData: [ChatRoom] = [
+        .init(chatroomId: 0, chatroomImage: "", chatroomName: "", chatList: .init())
+    ]
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
@@ -20,6 +29,9 @@ class HomeViewController: UIViewController {
         let xib = UINib(nibName: String(describing: HomeCollectionViewCell.self), bundle: nil)
         homeCollectionView.register(xib, forCellWithReuseIdentifier: String(describing: HomeCollectionViewCell.self))
         homeCollectionView.collectionViewLayout = getCollectionViewLayout()
+
+        friendSearchBar.delegate = self
+        currentData = totalData
     }
 
     private func setupNavigation() {
@@ -27,7 +39,9 @@ class HomeViewController: UIViewController {
         navigationItem.title = title
     }
 
-
+    func setupSearchBar() {
+        friendSearchBar.placeholder = "친구 이름을 검색해보세요"
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -47,12 +61,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ChatList.list.count
+        return currentData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HomeCollectionViewCell.self), for: indexPath) as? HomeCollectionViewCell else { return .init() }
-        cell.configureCell(ChatList.list[indexPath.row])
+        cell.configureCell(currentData[indexPath.row])
         DispatchQueue.main.async {
             cell.homeImageView.layer.cornerRadius = cell.homeImageView.frame.width / 2
         }
@@ -65,6 +79,20 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let vc = sb.instantiateViewController(withIdentifier: ChatViewController.identifier) as? ChatViewController else { return }
         vc.selectedIndex = indexPath.row
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let text = searchBar.text else { return }
+
+        if !text.isEmpty {
+            currentData = totalData.filter({ $0.clearRoomName.contains(text) })
+        } else {
+            currentData = totalData
+        }
+
+        homeCollectionView.reloadData()
     }
 }
 

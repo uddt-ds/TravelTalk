@@ -17,8 +17,8 @@ class MyChatTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupLabel()
         setupStackView()
+        setupLabel()
     }
 
     private func setupStackView() {

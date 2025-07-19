@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Erf-bL-qpP">
-                                <rect key="frame" x="0.0" y="168" width="402" height="706"/>
+                                <rect key="frame" x="0.0" y="224" width="402" height="650"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="55a-2S-AT1">
                                     <size key="itemSize" width="128" height="128"/>
@@ -37,24 +37,35 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="eNa-Qe-L8N">
+                                <rect key="frame" x="0.0" y="168" width="402" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="jLl-6u-H93"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="eNa-Qe-L8N" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="65Z-zM-4da"/>
                             <constraint firstAttribute="bottom" secondItem="Erf-bL-qpP" secondAttribute="bottom" id="HpH-91-nj3"/>
-                            <constraint firstItem="Erf-bL-qpP" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Ja8-gY-AEn"/>
+                            <constraint firstItem="Erf-bL-qpP" firstAttribute="top" secondItem="eNa-Qe-L8N" secondAttribute="bottom" id="Kh2-VG-PAE"/>
                             <constraint firstItem="Erf-bL-qpP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="LbF-cR-ghT"/>
+                            <constraint firstItem="eNa-Qe-L8N" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fJ5-MZ-EYN"/>
                             <constraint firstItem="Erf-bL-qpP" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="qvc-DM-G0F"/>
+                            <constraint firstItem="eNa-Qe-L8N" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="ydE-gY-6dS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EI8-46-liF"/>
                     <connections>
+                        <outlet property="friendSearchBar" destination="eNa-Qe-L8N" id="PFG-BI-jhD"/>
                         <outlet property="homeCollectionView" destination="Erf-bL-qpP" id="mu5-Od-AvK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1052.6717557251909" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="1050.7462686567164" y="-2.7459954233409607"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sdl-Jk-y1p">
