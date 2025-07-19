@@ -14,9 +14,15 @@ class ChatViewController: UIViewController {
     var selectedIndex: Int = 0
 
     @IBOutlet var chatTableView: UITableView!
+    @IBOutlet var chatTextView: UITextView!
+    @IBOutlet var sendButton: UIButton!
+    @IBOutlet var customTextBarStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTextView()
+        setupTextBar()
+        setupSendButton()
 
         let chatXib = UINib(nibName: String(describing: ChatTableViewCell.self), bundle: nil)
         chatTableView.register(chatXib, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
@@ -27,6 +33,28 @@ class ChatViewController: UIViewController {
         chatTableView.delegate = self
         chatTableView.dataSource = self
         chatTableView.separatorStyle = .none
+    }
+
+    private func setupTextView() {
+        chatTextView.backgroundColor = .clear
+        chatTextView.isScrollEnabled = false
+    }
+
+    private func setupTextBar() {
+        customTextBarStackView.backgroundColor = .systemGray6
+        customTextBarStackView.layer.cornerRadius = 12
+        customTextBarStackView.clipsToBounds = true
+        customTextBarStackView.axis = .horizontal
+        customTextBarStackView.distribution = .fill
+        customTextBarStackView.alignment = .bottom
+        customTextBarStackView.isLayoutMarginsRelativeArrangement = true
+        customTextBarStackView.layoutMargins = .init(top: 4, left: 4, bottom: 4, right: 4)
+    }
+
+    private func setupSendButton() {
+        let image = UIImage(systemName: "paperplane")
+        sendButton.setImage(image, for: .normal)
+        sendButton.tintColor = .lightGray
     }
 }
 

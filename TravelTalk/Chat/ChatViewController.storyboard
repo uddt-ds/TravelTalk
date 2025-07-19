@@ -17,29 +17,62 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="s1Z-Mp-APj">
-                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="600"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="rx3-Gn-bLI">
+                                <rect key="frame" x="24" y="726" width="345" height="50"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zce-S5-O2c">
+                                        <rect key="frame" x="0.0" y="0.0" width="309" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="zaf-kR-nyD"/>
+                                        </constraints>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idR-b2-9nJ">
+                                        <rect key="frame" x="309" y="14" width="36" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="36" id="93t-ka-u5p"/>
+                                            <constraint firstAttribute="height" constant="36" id="q73-f6-z66"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title=""/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="s1Z-Mp-APj" secondAttribute="bottom" id="0Mg-3G-sGU"/>
                             <constraint firstItem="s1Z-Mp-APj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8qV-v5-f6e"/>
+                            <constraint firstItem="rx3-Gn-bLI" firstAttribute="top" secondItem="s1Z-Mp-APj" secondAttribute="bottom" constant="8" id="BhU-Rc-3zH"/>
                             <constraint firstItem="s1Z-Mp-APj" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="iBO-jp-gQz"/>
+                            <constraint firstItem="rx3-Gn-bLI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="oBC-vR-0YL"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rx3-Gn-bLI" secondAttribute="trailing" constant="24" id="rRd-0r-Krq"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="s1Z-Mp-APj" secondAttribute="trailing" id="sTj-Rb-RWJ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rx3-Gn-bLI" secondAttribute="bottom" constant="8" id="xBd-cj-ALi"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="chatTableView" destination="s1Z-Mp-APj" id="GfX-WO-Jag"/>
+                        <outlet property="chatTextView" destination="Zce-S5-O2c" id="6BE-sy-Ijf"/>
+                        <outlet property="customTextBarStackView" destination="rx3-Gn-bLI" id="fR8-ty-yJ1"/>
+                        <outlet property="sendButton" destination="idR-b2-9nJ" id="Lhc-XN-sro"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="4"/>
+            <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
