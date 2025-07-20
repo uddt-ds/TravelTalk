@@ -22,11 +22,12 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigation()
         setupTextView()
         setupTextBar()
         setupSendButton()
         setupKeyboardEvent()
-        setupNavigation()
+
 
         let chatXib = UINib(nibName: String(describing: ChatTableViewCell.self), bundle: nil)
         chatTableView.register(chatXib, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
@@ -38,7 +39,10 @@ class ChatViewController: UIViewController {
         chatTableView.dataSource = self
         chatTableView.separatorStyle = .none
 
-        chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0), at: .bottom, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0), at: .bottom, animated: false)
+        }
 
         chatTextView.delegate = self
     }
@@ -46,11 +50,15 @@ class ChatViewController: UIViewController {
     private func setupTextView() {
         chatTextView.backgroundColor = .clear
         chatTextView.isScrollEnabled = false
+        chatTextView.autocorrectionType = .no
+        chatTextView.spellCheckingType = .no
+        chatTextView.autocapitalizationType = .none
     }
 
     private func setupNavigation() {
         navigationItem.title = navTitle
         navigationController?.navigationBar.tintColor = .black
+        navigationItem.scrollEdgeAppearance = .init()
     }
 
     private func setupTextBar() {
