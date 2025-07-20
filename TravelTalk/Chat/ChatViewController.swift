@@ -28,6 +28,9 @@ class ChatViewController: UIViewController {
         setupSendButton()
         setupKeyboardEvent()
 
+        // TODO: 이 코드 왜 안되는지 찾아보기
+//        view.keyboardLayoutGuide.topAnchor.constraint(equalTo: customTextBarStackView.bottomAnchor).isActive = true
+
 
         let chatXib = UINib(nibName: String(describing: ChatTableViewCell.self), bundle: nil)
         chatTableView.register(chatXib, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
@@ -41,7 +44,8 @@ class ChatViewController: UIViewController {
 
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            self.chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0), at: .bottom, animated: false)
+            self.chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0),
+                                           at: .bottom, animated: false)
         }
 
         chatTextView.delegate = self
@@ -85,9 +89,15 @@ class ChatViewController: UIViewController {
             self.view.endEditing(true)
             chatTextView.text = ""
             chatTableView.reloadData()
-            chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0), at: .bottom, animated: true)
+            chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0),
+                                      at: .bottom, animated: true)
         }
     }
+
+    @IBAction func ViewTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
 }
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {

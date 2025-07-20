@@ -47,6 +47,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="s1Z-Mp-APj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8qV-v5-f6e"/>
                             <constraint firstItem="s1Z-Mp-APj" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="iBO-jp-gQz"/>
@@ -56,6 +57,9 @@
                             <constraint firstItem="rx3-Gn-bLI" firstAttribute="top" secondItem="s1Z-Mp-APj" secondAttribute="bottom" constant="8" id="tHx-bf-Jlu"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rx3-Gn-bLI" secondAttribute="bottom" constant="8" id="xBd-cj-ALi"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="1dS-Me-KuW" appends="YES" id="zVL-9d-Vzv"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="chatTableView" destination="s1Z-Mp-APj" id="GfX-WO-Jag"/>
@@ -65,6 +69,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1dS-Me-KuW">
+                    <connections>
+                        <action selector="ViewTapped:" destination="Y6W-OH-hqX" id="Zbo-Wc-PUi"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
         </scene>

@@ -30,7 +30,6 @@ struct ChatRoom {
     }
 
     var clearRoomName: String {
-//        return chatroomName.last == "방" ? String(chatroomName.dropLast()) : chatroomName
         if chatroomName.last == "방" {
             return String(chatroomName.dropLast())
         } else {
