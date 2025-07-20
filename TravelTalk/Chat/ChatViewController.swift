@@ -27,6 +27,7 @@ class ChatViewController: UIViewController {
         setupTextBar()
         setupSendButton()
         setupKeyboardEvent()
+        checkLineBreakNumber()
 
         // TODO: 이 코드 왜 안되는지 찾아보기
 //        view.keyboardLayoutGuide.topAnchor.constraint(equalTo: customTextBarStackView.bottomAnchor).isActive = true
@@ -54,6 +55,7 @@ class ChatViewController: UIViewController {
     private func setupTextView() {
         chatTextView.backgroundColor = .clear
         chatTextView.isScrollEnabled = false
+        chatTextView.textContainer.maximumNumberOfLines = 3
         chatTextView.autocorrectionType = .no
         chatTextView.spellCheckingType = .no
         chatTextView.autocapitalizationType = .none
@@ -124,6 +126,27 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ChatViewController: UITextViewDelegate {
+
+    // TODO: 커서가 맨 위로 튀는 현상 해결하기
+    func checkLineBreakNumber() {
+        guard let text = chatTextView.text else { return }
+        let lineBreak = "\n"
+        var lineBreakNum = 0
+        let maximumNumberOfLines = 3
+        let lines = text.components(separatedBy: lineBreak)
+        for line in lines {
+            if line.isEmpty {
+                lineBreakNum += 1
+            } else {
+                lineBreakNum = 0
+            }
+
+            if lineBreakNum > maximumNumberOfLines {
+                chatTextView.text = String(text.dropLast())
+                break
+            }
+        }
+    }
 
     func setupKeyboardEvent() {
         NotificationCenter.default.addObserver(self,
