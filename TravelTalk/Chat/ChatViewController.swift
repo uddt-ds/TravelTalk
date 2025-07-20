@@ -27,11 +27,11 @@ class ChatViewController: UIViewController {
         setupTextBar()
         setupSendButton()
         setupKeyboardEvent()
-        checkLineBreakNumber()
+//        setupConstraints()
 
         // TODO: 이 코드 왜 안되는지 찾아보기
+        // 스토리보드랑 코드로 같이 제약을 잡으면 충돌해서 적용이 안되는데, 우선순위가 스토리보드인거 같음
 //        view.keyboardLayoutGuide.topAnchor.constraint(equalTo: customTextBarStackView.bottomAnchor).isActive = true
-
 
         let chatXib = UINib(nibName: String(describing: ChatTableViewCell.self), bundle: nil)
         chatTableView.register(chatXib, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
@@ -85,6 +85,20 @@ class ChatViewController: UIViewController {
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
     }
 
+//    private func setupConstraints() {
+//        customTextBarStackView.translatesAutoresizingMaskIntoConstraints = false
+//        let defaultConstraints = customTextBarStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+//        defaultConstraints.priority = .defaultLow
+//        defaultConstraints.isActive = true
+//
+//        let keyboardConstraints = customTextBarStackView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -8)
+//        keyboardConstraints.priority = .required
+//        keyboardConstraints.isActive = true
+////        NSLayoutConstraint.activate([
+////            customTextBarStackView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -8)
+////        ])
+//    }
+
     @objc private func sendButtonTapped(_ sender: UIButton) {
         if chatTextView.text != "" {
             chatData.append(Chat(user: User(name: "김새싹", image: ""), date: "00:00", message: chatTextView.text))
@@ -127,25 +141,18 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ChatViewController: UITextViewDelegate {
 
-    // TODO: 커서가 맨 위로 튀는 현상 해결하기
     func checkLineBreakNumber() {
         guard let text = chatTextView.text else { return }
         let lineBreak = "\n"
-        var lineBreakNum = 0
         let maximumNumberOfLines = 3
         let lines = text.components(separatedBy: lineBreak)
-        for line in lines {
-            if line.isEmpty {
-                lineBreakNum += 1
-            } else {
-                lineBreakNum = 0
-            }
-
-            if lineBreakNum > maximumNumberOfLines {
-                chatTextView.text = String(text.dropLast())
-                break
-            }
+        if lines.count > maximumNumberOfLines {
+            chatTextView.text = String(text.dropLast())
         }
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+        checkLineBreakNumber()
     }
 
     func setupKeyboardEvent() {

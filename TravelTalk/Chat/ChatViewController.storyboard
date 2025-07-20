@@ -50,12 +50,12 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="s1Z-Mp-APj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8qV-v5-f6e"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rx3-Gn-bLI" secondAttribute="bottom" constant="8" id="XaS-wv-jDp"/>
                             <constraint firstItem="s1Z-Mp-APj" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="iBO-jp-gQz"/>
                             <constraint firstItem="rx3-Gn-bLI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="oBC-vR-0YL"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rx3-Gn-bLI" secondAttribute="trailing" constant="24" id="rRd-0r-Krq"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="s1Z-Mp-APj" secondAttribute="trailing" id="sTj-Rb-RWJ"/>
                             <constraint firstItem="rx3-Gn-bLI" firstAttribute="top" secondItem="s1Z-Mp-APj" secondAttribute="bottom" constant="8" id="tHx-bf-Jlu"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rx3-Gn-bLI" secondAttribute="bottom" constant="8" id="xBd-cj-ALi"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="1dS-Me-KuW" appends="YES" id="zVL-9d-Vzv"/>
