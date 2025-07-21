@@ -50,7 +50,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="s1Z-Mp-APj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8qV-v5-f6e"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rx3-Gn-bLI" secondAttribute="bottom" constant="8" id="XaS-wv-jDp"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rx3-Gn-bLI" secondAttribute="bottom" priority="400" constant="8" id="XaS-wv-jDp"/>
                             <constraint firstItem="s1Z-Mp-APj" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="iBO-jp-gQz"/>
                             <constraint firstItem="rx3-Gn-bLI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="oBC-vR-0YL"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rx3-Gn-bLI" secondAttribute="trailing" constant="24" id="rRd-0r-Krq"/>

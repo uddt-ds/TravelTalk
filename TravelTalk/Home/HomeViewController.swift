@@ -22,7 +22,6 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigation()
 
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
@@ -32,6 +31,11 @@ class HomeViewController: UIViewController {
 
         friendSearchBar.delegate = self
         currentData = totalData
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigation()
     }
 
     private func setupNavigation() {
@@ -74,10 +78,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function, indexPath)
         let sb = UIStoryboard(name: ChatViewController.identifier, bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: ChatViewController.identifier) as? ChatViewController else { return }
-
         vc.chatData = currentData[indexPath.row].chatList
         vc.navTitle = currentData[indexPath.row].clearRoomName
         navigationItem.title = ""

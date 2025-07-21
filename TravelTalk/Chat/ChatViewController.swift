@@ -19,7 +19,7 @@ class ChatViewController: UIViewController {
     @IBOutlet var chatTextView: UITextView!
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var customTextBarStackView: UIStackView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
@@ -27,11 +27,6 @@ class ChatViewController: UIViewController {
         setupTextBar()
         setupSendButton()
         setupKeyboardEvent()
-//        setupConstraints()
-
-        // TODO: 이 코드 왜 안되는지 찾아보기
-        // 스토리보드랑 코드로 같이 제약을 잡으면 충돌해서 적용이 안되는데, 우선순위가 스토리보드인거 같음
-//        view.keyboardLayoutGuide.topAnchor.constraint(equalTo: customTextBarStackView.bottomAnchor).isActive = true
 
         let chatXib = UINib(nibName: String(describing: ChatTableViewCell.self), bundle: nil)
         chatTableView.register(chatXib, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
@@ -64,7 +59,6 @@ class ChatViewController: UIViewController {
     private func setupNavigation() {
         navigationItem.title = navTitle
         navigationController?.navigationBar.tintColor = .black
-        navigationItem.scrollEdgeAppearance = .init()
     }
 
     private func setupTextBar() {
@@ -84,20 +78,6 @@ class ChatViewController: UIViewController {
         sendButton.tintColor = .lightGray
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
     }
-
-//    private func setupConstraints() {
-//        customTextBarStackView.translatesAutoresizingMaskIntoConstraints = false
-//        let defaultConstraints = customTextBarStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//        defaultConstraints.priority = .defaultLow
-//        defaultConstraints.isActive = true
-//
-//        let keyboardConstraints = customTextBarStackView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -8)
-//        keyboardConstraints.priority = .required
-//        keyboardConstraints.isActive = true
-////        NSLayoutConstraint.activate([
-////            customTextBarStackView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -8)
-////        ])
-//    }
 
     @objc private func sendButtonTapped(_ sender: UIButton) {
         if chatTextView.text != "" {
