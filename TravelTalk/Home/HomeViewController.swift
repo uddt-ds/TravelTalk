@@ -15,12 +15,11 @@ class HomeViewController: UIViewController {
 
     let totalData = ChatList.list
 
-    var currentData: [ChatRoom] = [
-        .init(chatroomId: 0, chatroomImage: "", chatroomName: "", chatList: .init())
-    ]
+    var currentData: [ChatRoom] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigation()
         setupSearchBar()
 
         homeCollectionView.delegate = self
@@ -31,11 +30,6 @@ class HomeViewController: UIViewController {
 
         friendSearchBar.delegate = self
         currentData = totalData
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupNavigation()
     }
 
     func setupSearchBar() {
@@ -77,7 +71,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let vc = sb.instantiateViewController(withIdentifier: ChatViewController.identifier) as? ChatViewController else { return }
         vc.chatData = currentData[indexPath.row].chatList
         vc.navTitle = currentData[indexPath.row].clearRoomName
-        navigationItem.title = ""
+        navigationItem.backButtonTitle = ""
         navigationController?.pushViewController(vc, animated: true)
     }
 }

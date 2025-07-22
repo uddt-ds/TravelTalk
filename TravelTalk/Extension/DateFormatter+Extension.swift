@@ -8,7 +8,7 @@
 import Foundation
 
 enum DateFormat: String {
-    case totalDate = "YYYY.MM.dd HH:mm"
+    case totalDate = "YYYY-MM-dd HH:mm"
     case shortDate = "YY. MM. dd"
     case hypenYearMonthDate = "YYYY-MM-dd"
     case time = "HH:mm a"

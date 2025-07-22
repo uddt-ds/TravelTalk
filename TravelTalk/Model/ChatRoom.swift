@@ -18,7 +18,6 @@ struct ChatRoom {
         return chatList.last?.message ?? ""
     }
 
-    // DateFormatter의 format이 다르면 2개를 써야하는건지?
     var shortDate: String {
         guard let lastDateStr = chatList.last?.date,
               let date = DateFormatter.totalDate.date(from: lastDateStr) else {

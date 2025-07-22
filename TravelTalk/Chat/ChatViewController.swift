@@ -13,7 +13,7 @@ class ChatViewController: UIViewController {
 
     var navTitle: String = ""
 
-    var chatData: [Chat] = [.init(user: User(name: "김새싹", image: ""), date: "", message: "")]
+    var chatData: [Chat] = []
 
     @IBOutlet var chatTableView: UITableView!
     @IBOutlet var chatTextView: UITextView!
@@ -83,14 +83,14 @@ class ChatViewController: UIViewController {
     @objc private func sendButtonTapped(_ sender: UIButton) {
         if chatTextView.text != "" {
             chatData.append(Chat(user: User(name: "김새싹", image: ""),
-                                 date: DateFormatter.hypenDate.string(from: Date()),
+                                 date: DateFormatter.totalDate.string(from: Date()),
                                  message: chatTextView.text))
-            self.view.endEditing(true)
             chatTextView.text = ""
             chatTableView.reloadData()
             chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0),
                                       at: .bottom, animated: true)
         }
+        self.view.endEditing(true)
     }
 
     @IBAction func ViewTapped(_ sender: UITapGestureRecognizer) {
