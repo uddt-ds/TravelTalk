@@ -37,11 +37,6 @@ class HomeViewController: UIViewController {
         setupNavigation()
     }
 
-    private func setupNavigation() {
-        let title = "TRAVEL TALK"
-        navigationItem.title = title
-    }
-
     func setupSearchBar() {
         friendSearchBar.placeholder = "친구 이름을 검색해보세요"
     }
@@ -83,6 +78,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         vc.navTitle = currentData[indexPath.row].clearRoomName
         navigationItem.title = ""
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension HomeViewController: InitialSetProtocol {
+    func setupNavigation() {
+        let title = "TRAVEL TALK"
+        navigationItem.title = title
     }
 }
 

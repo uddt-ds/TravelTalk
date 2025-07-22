@@ -62,11 +62,6 @@ class ChatViewController: UIViewController {
         chatTextView.autocapitalizationType = .none
     }
 
-    private func setupNavigation() {
-        navigationItem.title = navTitle
-        navigationController?.navigationBar.tintColor = .black
-    }
-
     private func setupTextBar() {
         customTextBarStackView.backgroundColor = .systemGray6
         customTextBarStackView.layer.cornerRadius = 12
@@ -100,7 +95,13 @@ class ChatViewController: UIViewController {
     @IBAction func ViewTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
-    
+}
+
+extension ChatViewController: InitialSetProtocol {
+    func setupNavigation() {
+        navigationItem.title = navTitle
+        navigationController?.navigationBar.tintColor = .black
+    }
 }
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {

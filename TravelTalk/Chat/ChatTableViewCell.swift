@@ -46,12 +46,16 @@ class ChatTableViewCell: UITableViewCell {
 
         timeLabel.setupLabel(title: "", font: .systemFont(ofSize: 8), txtColor: .gray)
     }
+}
 
-    func configureCell(data: Chat) {
-        chatImageView.image = UIImage(named: data.user.image)
-        nameLabel.text = data.user.name
-        messageLabel.text = data.message
-        timeLabel.text = data.shortDate
+extension ChatTableViewCell: CellProtocol {
+    func configureCell(data: Any) {
+        guard let rawData = data as? Chat else { return }
+        chatImageView.image = UIImage(named: rawData.user.image)
+        nameLabel.text = rawData.user.name
+        messageLabel.text = rawData.message
+        timeLabel.text = rawData.shortDate
     }
+    
 
 }
