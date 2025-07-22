@@ -15,9 +15,6 @@ class ChatViewController: UIViewController {
 
     var chatData: [Chat] = [.init(user: User(name: "김새싹", image: ""), date: "", message: "")]
 
-    var currentDate: String = ""
-    var dateArray: [String] = [""]
-
     @IBOutlet var chatTableView: UITableView!
     @IBOutlet var chatTextView: UITextView!
     @IBOutlet var sendButton: UIButton!
@@ -95,13 +92,8 @@ class ChatViewController: UIViewController {
             self.view.endEditing(true)
             chatTextView.text = ""
             chatTableView.reloadData()
-//            chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0),
-//                                      at: .bottom, animated: true)
-            DispatchQueue.main.async { [weak self] in
-                guard let self else { return }
-                self.chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0),
-                                               at: .bottom, animated: false)
-            }
+            chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0),
+                                      at: .bottom, animated: true)
         }
     }
 
@@ -118,9 +110,17 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let rawChatDate = chatData[indexPath.row]
+
+        var previousDate: String? = nil
+        if indexPath.row > 0 {
+            previousDate = chatData[indexPath.row - 1].compareDate
+        }
+
+        let isValueChanged = rawChatDate.compareDate != previousDate
+
         if chatData[indexPath.row].user.name != "김새싹" {
-            if chatData[indexPath.row].compareDate != currentDate {
-                currentDate = chatData[indexPath.row].compareDate
+            if isValueChanged {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SeparateChatTableViewCell.self), for: indexPath) as? SeparateChatTableViewCell else { return .init() }
                 cell.configureCell(data: chatData[indexPath.row])
                 cell.configureDateLabel(date: chatData[indexPath.row].compareDate)
@@ -132,8 +132,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
         } else {
-            if chatData[indexPath.row].compareDate != currentDate {
-                currentDate = chatData[indexPath.row].compareDate
+            if isValueChanged {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SeparateMyChatTableViewCell.self), for: indexPath) as? SeparateMyChatTableViewCell else { return .init() }
                 cell.configureCell(data: chatData[indexPath.row])
                 cell.configureDateLabel(date: chatData[indexPath.row].compareDate)

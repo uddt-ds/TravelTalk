@@ -19,7 +19,6 @@ class HomeViewController: UIViewController {
         .init(chatroomId: 0, chatroomImage: "", chatroomName: "", chatList: .init())
     ]
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -92,7 +91,7 @@ extension HomeViewController: UISearchBarDelegate {
         guard let text = searchBar.text else { return }
 
         if !text.isEmpty {
-            currentData = totalData.filter({ $0.clearRoomName.contains(text) })
+            currentData = totalData.filter{ $0.clearRoomName.contains(text) }
         } else {
             currentData = totalData
         }
