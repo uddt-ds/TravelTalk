@@ -25,8 +25,8 @@ class HomeViewController: UIViewController {
 
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
-        let xib = UINib(nibName: String(describing: HomeCollectionViewCell.self), bundle: nil)
-        homeCollectionView.register(xib, forCellWithReuseIdentifier: String(describing: HomeCollectionViewCell.self))
+        let xib = UINib(nibName: CellIdentifier.homeCell, bundle: nil)
+        homeCollectionView.register(xib, forCellWithReuseIdentifier: CellIdentifier.homeCell)
         homeCollectionView.collectionViewLayout = getCollectionViewLayout()
 
         friendSearchBar.delegate = self

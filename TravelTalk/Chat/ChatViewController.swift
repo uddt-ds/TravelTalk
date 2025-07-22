@@ -28,17 +28,17 @@ class ChatViewController: UIViewController {
         setupSendButton()
         setupKeyboardEvent()
 
-        let chatXib = UINib(nibName: String(describing: ChatTableViewCell.self), bundle: nil)
-        chatTableView.register(chatXib, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
+        let chatXib = UINib(nibName: CellIdentifier.chatTableViewCell, bundle: nil)
+        chatTableView.register(chatXib, forCellReuseIdentifier: CellIdentifier.chatTableViewCell)
 
-        let separteChatXib = UINib(nibName: String(describing: SeparateChatTableViewCell.self), bundle: nil)
-        chatTableView.register(separteChatXib, forCellReuseIdentifier: String(describing: SeparateChatTableViewCell.self))
+        let separteChatXib = UINib(nibName: CellIdentifier.separateChatTableViewCell, bundle: nil)
+        chatTableView.register(separteChatXib, forCellReuseIdentifier: CellIdentifier.separateChatTableViewCell)
 
-        let myChatXib = UINib(nibName: String(describing: MyChatTableViewCell.self), bundle: nil)
-        chatTableView.register(myChatXib, forCellReuseIdentifier: String(describing: MyChatTableViewCell.self))
+        let myChatXib = UINib(nibName: CellIdentifier.myChatTableViewCell, bundle: nil)
+        chatTableView.register(myChatXib, forCellReuseIdentifier: CellIdentifier.myChatTableViewCell)
 
-        let separteMyChatXib = UINib(nibName: String(describing: SeparateMyChatTableViewCell.self), bundle: nil)
-        chatTableView.register(separteMyChatXib, forCellReuseIdentifier: String(describing: SeparateMyChatTableViewCell.self))
+        let separteMyChatXib = UINib(nibName: CellIdentifier.separateMyChatTableViewCell, bundle: nil)
+        chatTableView.register(separteMyChatXib, forCellReuseIdentifier: CellIdentifier.separateMyChatTableViewCell)
 
         chatTableView.delegate = self
         chatTableView.dataSource = self
@@ -123,23 +123,23 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 
         if chatData[indexPath.row].user.name != "김새싹" {
             if isValueChanged {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SeparateChatTableViewCell.self), for: indexPath) as? SeparateChatTableViewCell else { return .init() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.separateChatTableViewCell, for: indexPath) as? SeparateChatTableViewCell else { return .init() }
                 cell.configureCell(data: chatData[indexPath.row])
                 cell.configureDateLabel(date: chatData[indexPath.row].compareDate)
                 return cell
             } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as? ChatTableViewCell else { return .init() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.chatTableViewCell, for: indexPath) as? ChatTableViewCell else { return .init() }
                 cell.configureCell(data: chatData[indexPath.row])
                 return cell
             }
         } else {
             if isValueChanged {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SeparateMyChatTableViewCell.self), for: indexPath) as? SeparateMyChatTableViewCell else { return .init() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.separateMyChatTableViewCell, for: indexPath) as? SeparateMyChatTableViewCell else { return .init() }
                 cell.configureCell(data: chatData[indexPath.row])
                 cell.configureDateLabel(date: chatData[indexPath.row].compareDate)
                 return cell
             } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MyChatTableViewCell.self), for: indexPath) as? MyChatTableViewCell else { return .init() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.myChatTableViewCell, for: indexPath) as? MyChatTableViewCell else { return .init() }
                 cell.configureCell(data: chatData[indexPath.row])
                 return cell
             }
