@@ -90,7 +90,7 @@ class ChatViewController: UIViewController {
 
     @objc private func sendButtonTapped(_ sender: UIButton) {
         if chatTextView.text != "" {
-            chatData.append(Chat(user: User(name: "김새싹", image: ""), date: Date().formattedString(dateFormat: .yearMonthDate), message: chatTextView.text))
+            chatData.append(Chat(user: User(name: "김새싹", image: ""), date: DateFormatter.hypenDate.string(from: Date()), message: chatTextView.text))
             print(chatData)
             self.view.endEditing(true)
             chatTextView.text = ""

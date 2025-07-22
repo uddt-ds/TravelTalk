@@ -13,15 +13,10 @@ struct Chat {
     let message: String
 
     var shortDate: String {
-        let dateFormatter = DateManager.shared.formatter
-        dateFormatter.dateFormat = "YYYY. MM. dd HH:mm"
-        let convertData = dateFormatter.date(from: date)
-
-        let dateFormatter2 = DateManager.shared.formatter2
-        dateFormatter2.dateFormat = "HH:mm a"
-        dateFormatter2.locale = Locale(identifier: "ko_KR")
-        let convertStr = dateFormatter2.string(from: convertData ?? Date())
-        return convertStr
+        guard let rawDate = DateFormatter.totalDate.date(from: date) else {
+            return ""
+        }
+        return DateFormatter.onlyTime.string(from: rawDate)
     }
 
     var compareDate: String {

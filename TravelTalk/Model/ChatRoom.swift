@@ -20,15 +20,11 @@ struct ChatRoom {
 
     // DateFormatter의 format이 다르면 2개를 써야하는건지?
     var shortDate: String {
-        let dateFormatter = DateManager.shared.formatter
-        dateFormatter.dateFormat = "YYYY. MM. dd HH:mm"
-        let convertData = dateFormatter.date(from: chatList.last?.date ?? "")
-
-        let dateFormatter2 = DateManager.shared.formatter2
-        dateFormatter2.dateFormat = "YY. MM. dd"
-        dateFormatter2.locale = Locale(identifier: "ko_KR")
-        let convertStr = dateFormatter2.string(from: convertData ?? Date())
-        return convertStr
+        guard let lastDateStr = chatList.last?.date,
+              let date = DateFormatter.totalDate.date(from: lastDateStr) else {
+            return ""
+        }
+        return DateFormatter.shortDate.string(from: date)
     }
 
     var clearRoomName: String {
