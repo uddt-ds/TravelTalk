@@ -27,8 +27,6 @@ struct ChatRoom {
         let dateFormatter2 = DateManager.shared.formatter2
         dateFormatter2.dateFormat = "YY. MM. dd"
         dateFormatter2.locale = Locale(identifier: "ko_KR")
-        dump("chatroom, \(dateFormatter)")
-        dump("chatroom, \(dateFormatter2)")
         let convertStr = dateFormatter2.string(from: convertData ?? Date())
         return convertStr
     }

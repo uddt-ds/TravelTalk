@@ -13,7 +13,10 @@ class ChatViewController: UIViewController {
 
     var navTitle: String = ""
 
-    var chatData: [Chat] = [.init(user: User(name: "김새싹", image: ""), date: "00:00", message: "")]
+    var chatData: [Chat] = [.init(user: User(name: "김새싹", image: ""), date: "", message: "")]
+
+    var currentDate: String = ""
+    var dateArray: [String] = [""]
 
     @IBOutlet var chatTableView: UITableView!
     @IBOutlet var chatTextView: UITextView!
@@ -87,12 +90,18 @@ class ChatViewController: UIViewController {
 
     @objc private func sendButtonTapped(_ sender: UIButton) {
         if chatTextView.text != "" {
-            chatData.append(Chat(user: User(name: "김새싹", image: ""), date: "00:00", message: chatTextView.text))
+            chatData.append(Chat(user: User(name: "김새싹", image: ""), date: Date().formattedString(dateFormat: .yearMonthDate), message: chatTextView.text))
+            print(chatData)
             self.view.endEditing(true)
             chatTextView.text = ""
             chatTableView.reloadData()
-            chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0),
-                                      at: .bottom, animated: true)
+//            chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0),
+//                                      at: .bottom, animated: true)
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                self.chatTableView.scrollToRow(at: IndexPath(row: chatData.count - 1, section: 0),
+                                               at: .bottom, animated: false)
+            }
         }
     }
 
@@ -110,14 +119,31 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if chatData[indexPath.row].user.name != "김새싹" {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SeparateChatTableViewCell.self), for: indexPath) as? SeparateChatTableViewCell else { return .init() }
-            cell.configureCell(data: chatData[indexPath.row])
-            cell.configureDateLabel(date: "25.02.12")
-            return cell
+            if chatData[indexPath.row].compareDate != currentDate {
+                currentDate = chatData[indexPath.row].compareDate
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SeparateChatTableViewCell.self), for: indexPath) as? SeparateChatTableViewCell else { return .init() }
+                cell.configureCell(data: chatData[indexPath.row])
+                cell.configureDateLabel(date: chatData[indexPath.row].compareDate)
+                print(chatData[indexPath.row].compareDate)
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as? ChatTableViewCell else { return .init() }
+                cell.configureCell(data: chatData[indexPath.row])
+                return cell
+            }
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MyChatTableViewCell.self), for: indexPath) as? MyChatTableViewCell else { return .init() }
-            cell.configureCell(data: chatData[indexPath.row])
-            return cell
+            if chatData[indexPath.row].compareDate != currentDate {
+                currentDate = chatData[indexPath.row].compareDate
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SeparateMyChatTableViewCell.self), for: indexPath) as? SeparateMyChatTableViewCell else { return .init() }
+                cell.configureCell(data: chatData[indexPath.row])
+                cell.configureDateLabel(date: chatData[indexPath.row].compareDate)
+                print(chatData[indexPath.row].compareDate)
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MyChatTableViewCell.self), for: indexPath) as? MyChatTableViewCell else { return .init() }
+                cell.configureCell(data: chatData[indexPath.row])
+                return cell
+            }
         }
     }
 

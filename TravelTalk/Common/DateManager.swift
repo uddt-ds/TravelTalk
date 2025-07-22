@@ -22,7 +22,7 @@ struct DateManager {
 //1. 열거형으로 DateFormat 구현
 enum DateFormat: String {
     case totalDate = "YYYY.MM.dd HH:mm"
-    case yearMonthDate = "YY. MM. dd"
+    case yearMonthDate = "YYYY-MM.dd"
     case time = "HH:mm a"
 }
 

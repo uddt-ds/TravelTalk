@@ -20,9 +20,11 @@ struct Chat {
         let dateFormatter2 = DateManager.shared.formatter2
         dateFormatter2.dateFormat = "HH:mm a"
         dateFormatter2.locale = Locale(identifier: "ko_KR")
-        dump("chat, \(dateFormatter)")
-        dump("chat, \(dateFormatter2)")
         let convertStr = dateFormatter2.string(from: convertData ?? Date())
         return convertStr
+    }
+
+    var compareDate: String {
+        return String(date.prefix(10))
     }
 }
