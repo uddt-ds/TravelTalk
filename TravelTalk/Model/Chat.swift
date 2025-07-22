@@ -22,4 +22,9 @@ struct Chat {
     var compareDate: String {
         return String(date.prefix(10))
     }
+
+    func isDateChanged(previousChat: Chat?) -> Bool {
+        guard let previousChat else { return true }
+        return self.compareDate != previousChat.compareDate
+    }
 }

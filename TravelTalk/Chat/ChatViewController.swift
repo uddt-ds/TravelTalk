@@ -112,16 +112,17 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let rawChatDate = chatData[indexPath.row]
+        let rawChatData = chatData[indexPath.row]
 
-        var previousDate: String? = nil
+        var previousData: Chat? = nil
+
         if indexPath.row > 0 {
-            previousDate = chatData[indexPath.row - 1].compareDate
+            previousData = chatData[indexPath.row - 1]
         }
 
-        let isValueChanged = rawChatDate.compareDate != previousDate
+        let isValueChanged = rawChatData.isDateChanged(previousChat: previousData)
 
-        if chatData[indexPath.row].user.name != "김새싹" {
+        if rawChatData.user.name != "김새싹" {
             if isValueChanged {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.separateChatTableViewCell, for: indexPath) as? SeparateChatTableViewCell else { return .init() }
                 cell.configureCell(data: chatData[indexPath.row])
