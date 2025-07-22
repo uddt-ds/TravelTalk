@@ -49,13 +49,11 @@ class ChatTableViewCell: UITableViewCell {
 }
 
 extension ChatTableViewCell: CellProtocol {
-    func configureCell(data: Any) {
-        guard let rawData = data as? Chat else { return }
-        chatImageView.image = UIImage(named: rawData.user.image)
-        nameLabel.text = rawData.user.name
-        messageLabel.text = rawData.message
-        timeLabel.text = rawData.shortDate
+    typealias CellData = Chat
+    func configureCell(data: CellData) {
+        chatImageView.image = UIImage(named: data.user.image)
+        nameLabel.text = data.user.name
+        messageLabel.text = data.message
+        timeLabel.text = data.shortDate
     }
-    
-
 }

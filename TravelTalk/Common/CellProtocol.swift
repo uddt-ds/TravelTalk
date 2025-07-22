@@ -8,5 +8,6 @@
 import Foundation
 
 protocol CellProtocol {
-    func configureCell(data: Any)
+    associatedtype CellData
+    func configureCell(data: CellData)
 }

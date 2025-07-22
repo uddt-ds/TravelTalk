@@ -50,12 +50,16 @@ class SeparateMyChatTableViewCell: UITableViewCell {
         topDateLabel.clipsToBounds = true
     }
 
+    func configureDateLabel(date: String) {
+        topDateLabel.text = date
+    }
+}
+
+extension SeparateMyChatTableViewCell: CellProtocol {
+    typealias CellData = Chat
+
     func configureCell(data: Chat) {
         myMessageLabel.text = data.message
         timeLabel.text = data.shortDate
-    }
-
-    func configureDateLabel(date: String) {
-        topDateLabel.text = date
     }
 }

@@ -39,10 +39,13 @@ class MyChatTableViewCell: UITableViewCell {
         timeLabel.setupLabel(title: "", font: .systemFont(ofSize: 8), txtColor: .gray)
         timeLabel.textAlignment = .right
     }
+}
+
+extension MyChatTableViewCell: CellProtocol {
+    typealias CellData = Chat
 
     func configureCell(data: Chat) {
         myMessageLabel.text = data.message
         timeLabel.text = data.shortDate
     }
-
 }

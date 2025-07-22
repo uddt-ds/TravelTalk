@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSearchBar()
 
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
@@ -64,7 +65,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HomeCollectionViewCell.self), for: indexPath) as? HomeCollectionViewCell else { return .init() }
-        cell.configureCell(currentData[indexPath.row])
+        cell.configureCell(data: currentData[indexPath.row])
         DispatchQueue.main.async {
             cell.homeImageView.layer.cornerRadius = cell.homeImageView.frame.width / 2
         }
@@ -97,7 +98,6 @@ extension HomeViewController: UISearchBarDelegate {
         } else {
             currentData = totalData
         }
-
         homeCollectionView.reloadData()
     }
 }

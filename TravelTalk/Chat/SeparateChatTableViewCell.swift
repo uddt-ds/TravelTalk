@@ -58,15 +58,18 @@ class SeparateChatTableViewCell: UITableViewCell {
         topDateLabel.clipsToBounds = true
     }
 
+    func configureDateLabel(date: String) {
+        topDateLabel.text = date
+    }
+}
+
+extension SeparateChatTableViewCell: CellProtocol {
+    typealias CellData = Chat
+
     func configureCell(data: Chat) {
         chatImageView.image = UIImage(named: data.user.image)
         nameLabel.text = data.user.name
         messageLabel.text = data.message
         timeLabel.text = data.shortDate
     }
-
-    func configureDateLabel(date: String) {
-        topDateLabel.text = date
-    }
-
 }

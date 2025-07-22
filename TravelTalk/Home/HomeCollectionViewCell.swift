@@ -27,8 +27,12 @@ class HomeCollectionViewCell: UICollectionViewCell {
         dateLabel.textColor = .gray
         dateLabel.font = .systemFont(ofSize: 10)
     }
+}
 
-    func configureCell(_ data: ChatRoom) {
+extension HomeCollectionViewCell: CellProtocol {
+    typealias CellData = ChatRoom
+
+    func configureCell(data: ChatRoom) {
         homeImageView.image = UIImage(named: data.chatroomImage)
         nameLabel.text = data.clearRoomName
         lastChatLabel.text = data.chatList.last?.message

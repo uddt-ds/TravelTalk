@@ -82,8 +82,9 @@ class ChatViewController: UIViewController {
 
     @objc private func sendButtonTapped(_ sender: UIButton) {
         if chatTextView.text != "" {
-            chatData.append(Chat(user: User(name: "김새싹", image: ""), date: DateFormatter.hypenDate.string(from: Date()), message: chatTextView.text))
-            print(chatData)
+            chatData.append(Chat(user: User(name: "김새싹", image: ""),
+                                 date: DateFormatter.hypenDate.string(from: Date()),
+                                 message: chatTextView.text))
             self.view.endEditing(true)
             chatTextView.text = ""
             chatTableView.reloadData()
@@ -125,7 +126,6 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SeparateChatTableViewCell.self), for: indexPath) as? SeparateChatTableViewCell else { return .init() }
                 cell.configureCell(data: chatData[indexPath.row])
                 cell.configureDateLabel(date: chatData[indexPath.row].compareDate)
-                print(chatData[indexPath.row].compareDate)
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as? ChatTableViewCell else { return .init() }
@@ -137,7 +137,6 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SeparateMyChatTableViewCell.self), for: indexPath) as? SeparateMyChatTableViewCell else { return .init() }
                 cell.configureCell(data: chatData[indexPath.row])
                 cell.configureDateLabel(date: chatData[indexPath.row].compareDate)
-                print(chatData[indexPath.row].compareDate)
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MyChatTableViewCell.self), for: indexPath) as? MyChatTableViewCell else { return .init() }
