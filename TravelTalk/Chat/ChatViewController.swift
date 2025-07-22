@@ -31,8 +31,14 @@ class ChatViewController: UIViewController {
         let chatXib = UINib(nibName: String(describing: ChatTableViewCell.self), bundle: nil)
         chatTableView.register(chatXib, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
 
+        let separteChatXib = UINib(nibName: String(describing: SeparateChatTableViewCell.self), bundle: nil)
+        chatTableView.register(separteChatXib, forCellReuseIdentifier: String(describing: SeparateChatTableViewCell.self))
+
         let myChatXib = UINib(nibName: String(describing: MyChatTableViewCell.self), bundle: nil)
         chatTableView.register(myChatXib, forCellReuseIdentifier: String(describing: MyChatTableViewCell.self))
+
+        let separteMyChatXib = UINib(nibName: String(describing: SeparateMyChatTableViewCell.self), bundle: nil)
+        chatTableView.register(separteMyChatXib, forCellReuseIdentifier: String(describing: SeparateMyChatTableViewCell.self))
 
         chatTableView.delegate = self
         chatTableView.dataSource = self
@@ -104,8 +110,9 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if chatData[indexPath.row].user.name != "김새싹" {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as? ChatTableViewCell else { return .init() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SeparateChatTableViewCell.self), for: indexPath) as? SeparateChatTableViewCell else { return .init() }
             cell.configureCell(data: chatData[indexPath.row])
+            cell.configureDateLabel(date: "25.02.12")
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MyChatTableViewCell.self), for: indexPath) as? MyChatTableViewCell else { return .init() }

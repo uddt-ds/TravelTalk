@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9BA4ADE92E2EF6E00035040F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9BA4ADE82E2EF6E00035040F /* SnapKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		9B8B5C682E2A192600DA43EE /* TravelTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BA4ADE92E2EF6E00035040F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = TravelTalk;
 			packageProductDependencies = (
+				9BA4ADE82E2EF6E00035040F /* SnapKit */,
 			);
 			productName = TravelTalk;
 			productReference = 9B8B5C682E2A192600DA43EE /* TravelTalk.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 9B8B5C5F2E2A192600DA43EE;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9BA4ADE72E2EF6E00035040F /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 9B8B5C692E2A192600DA43EE /* Products */;
 			projectDirPath = "";
@@ -343,6 +352,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9BA4ADE72E2EF6E00035040F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9BA4ADE82E2EF6E00035040F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9BA4ADE72E2EF6E00035040F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9B8B5C602E2A192600DA43EE /* Project object */;
 }

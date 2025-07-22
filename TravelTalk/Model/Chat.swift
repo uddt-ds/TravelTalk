@@ -13,14 +13,16 @@ struct Chat {
     let message: String
 
     var shortDate: String {
-        let dateFormatter = DateFormatter()
+        let dateFormatter = DateManager.shared.formatter
         dateFormatter.dateFormat = "YYYY. MM. dd HH:mm"
         let convertData = dateFormatter.date(from: date)
 
-        dateFormatter.dateFormat = "HH:mm a"
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        let convertStr = dateFormatter.string(from: convertData ?? Date())
+        let dateFormatter2 = DateManager.shared.formatter2
+        dateFormatter2.dateFormat = "HH:mm a"
+        dateFormatter2.locale = Locale(identifier: "ko_KR")
+        dump("chat, \(dateFormatter)")
+        dump("chat, \(dateFormatter2)")
+        let convertStr = dateFormatter2.string(from: convertData ?? Date())
         return convertStr
     }
-
 }
